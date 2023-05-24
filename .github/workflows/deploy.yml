@@ -1,0 +1,28 @@
+name: hordelib build and publish
+
+on:
+  push:
+    branches:
+      - main
+      
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Haidra.net
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${SSH_PRIVATE_KEY}" > ~/.ssh/private.key
+          chmod 600 ~/.ssh/private.key
+          echo "${SSH_KNOWN_HOSTS}" > ~/.ssh/known_hosts
+          ls -l ~/.ssh/private.key
+          ssh -i ~/.ssh/private.key webcd@${WEBSERVER} 'uptime'
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.CD_SSH_PRIVKEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.CD_KNOWN_HOSTS}}
+          WEBSERVER: ${{secrets.CD_WEBSERVER_IP}}
