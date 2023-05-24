@@ -19,8 +19,7 @@ jobs:
           echo "${SSH_PRIVATE_KEY}" > ~/.ssh/private.key
           chmod 600 ~/.ssh/private.key
           echo "${SSH_KNOWN_HOSTS}" > ~/.ssh/known_hosts
-          ls -l ~/.ssh/private.key
-          ssh -i ~/.ssh/private.key webcd@${WEBSERVER} 'uptime'
+          ssh -i ~/.ssh/private.key webcd@${WEBSERVER} 'cd /var/www/Haidra-Web && git fetch && git reset origin/main --hard'
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.CD_SSH_PRIVKEY}}
