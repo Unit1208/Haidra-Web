@@ -166,6 +166,9 @@ textarea {
   max-width: 640px;
   position: absolute;
   right: 16px;
+  font-weight: 600;
+  backdrop-filter: blur(5px) brightness(0.8);
+  border-radius: 3px;
 }
 
 .content {
@@ -173,6 +176,9 @@ textarea {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  background-image: url("../public/haidra-transparent-zoomed-in.png");
+  background-repeat: space;
+  background-size: 25%;
 }
 
 .content-top,
@@ -195,7 +201,7 @@ textarea {
   display: flex;
   flex-direction: row;
   font-size: 56px;
-  font-weight: 700;
+  font-weight: 800;
   justify-content: center;
   margin-top: 80px;
   width: 100%;
